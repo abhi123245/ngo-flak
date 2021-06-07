@@ -1,0 +1,123 @@
+<!--<button id="rzp-button1">Pay</button>-->
+<!--{{ response.id }}-->
+<!--<script src="https://api.razorpay.com/v1/checkout/embedded"></script>-->
+
+
+<!--<form method="POST" action="https://api.razorpay.com/v1">-->
+<!--    <input type="hidden" name="key_id" value="rzp_test_n8uWvDZ7OQxiVF">-->
+<!--    <input type="hidden" name="order_id" value={{ response.id }}>-->
+<!--    <input type="hidden" name="amount" value="100">-->
+<!--    <input type="hidden" name="currency" value="INR">-->
+<!--    <input type="hidden" name="name" value="|ABHI">-->
+<!--    <input type="hidden" name="Email" value="abhi@gmail.com">-->
+<!--    <input type="hidden" name="Contact" value="9074283288">-->
+
+
+
+<!--    &lt;!&ndash;    <input type="hidden" name="callback_url" value="https://example.com/payment-callback">&ndash;&gt;-->
+<!--    &lt;!&ndash;    <input type="hidden" name="cancel_url" value="https://example.com/payment-cancel">&ndash;&gt;-->
+<!--    <button>Submit</button>-->
+<!--<script>-->
+<!--        alert(response.id);-->
+
+<!--var options = {-->
+<!--    "key": "rzp_test_n8uWvDZ7OQxiVF", // Enter the Key ID generated from the Dashboard-->
+<!--    "amount": 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise-->
+<!--    "currency": "INR",-->
+<!--    "name": "Test Customer",-->
+<!--    "description": "Payment link for this purpose - xyz",-->
+<!--    "image": "https://example.com/your_logo",-->
+<!--    "order_id": response.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1-->
+
+
+<!--    "handler": function (response){-->
+<!--        alert(response.razorpay_payment_id);-->
+<!--        alert(response.razorpay_order_id);-->
+<!--        alert(response.razorpay_signature)-->
+<!--    },-->
+<!--    "prefill": {-->
+<!--        "name": "Test Customer",-->
+<!--        "email": "test@example.com",-->
+<!--        "contact": "+919999888877"-->
+<!--    },-->
+<!--    "notes": {-->
+<!--        "address": "Razorpay Corporate Office"-->
+<!--    },-->
+<!--    "theme": {-->
+<!--        "color": "#3399cc"-->
+<!--    }-->
+<!--};-->
+<!--var rzp1 = new Razorpay(options);-->
+<!--rzp1.on('payment.failed', function (response){-->
+<!--        alert(response.error.code);-->
+<!--        alert(response.error.description);-->
+<!--        alert(response.error.source);-->
+<!--        alert(response.error.step);-->
+<!--        alert(response.error.reason);-->
+<!--        alert(response.error.metadata.order_id);-->
+<!--        alert(response.error.metadata.payment_id);-->
+<!--});-->
+<!--document.getElementById('rzp-button1').onclick = function(e){-->
+<!--    rzp1.open();-->
+<!--    e.preventDefault();-->
+<!--}-->
+<!--</script>-->
+
+
+<!--    <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_HJpWMzUdz4K8Hu" async> </script> </form>-->
+
+
+<!--&lt;!&ndash;<html>&ndash;&gt;-->
+<!--&lt;!&ndash;<head lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="utf-8">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="key_id" value="rzp_test_n8uWvDZ7OQxiVF">&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;    <input type="hidden" name="callback_url" value="https://example.com/payment-callback">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <input type="hidden" name="cancel_url" value="https://example.com/payment-cancel">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <button>Submit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+
+
+
+
+
+
+
+<button id="rzp-button1">Pay</button>{{ response[0].id }}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_n8uWvDZ7OQxiVF", // Enter the Key ID generated from the Dashboard
+    "amount": "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": "{{ response[0].id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "callback_url": "http://127.0.0.1:5000/charge",
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
