@@ -37,6 +37,8 @@ def donate():
 	# 	return render_template("donate.html")
 	# else:
         formData=request.form
+        data=formData.to_dict(flat=True)
+
         client = razorpay.Client(auth=("rzp_test_n8uWvDZ7OQxiVF", "Z43ydwqWszIwqcewygbCChEs"))
         client.set_app_details({"title" : "<YOUR_APP_TITLE>", "version" : "<YOUR_APP_VERSION>"})
         DATA = {
@@ -49,7 +51,7 @@ def donate():
         order_receipt = 'order_rcptid_11'
         notes = {'Shipping address': 'Bommanahalli, Bangalore'}   # OPTIONALclient.order.create(amount=order_amount, currency=order_currency, receipt=order_receipt, notes=notes)        print(response)
         response=client.order.create(data=DATA)
-        print(response)
+        print(data)
         return render_template("payment.html",response=[response,formData])
 		# name=request.form['Name']
 		# email=request.form['Email']
